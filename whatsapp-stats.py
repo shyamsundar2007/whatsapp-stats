@@ -123,7 +123,8 @@ def main():
 
 # variables required
 file_name = ''
-regex_string = '(\d+)\/(\d+)\/(\d+)\s(\d+):(\d+):(\d+).+:\s([\w\s]+):\s(.*)'
+#regex_string = '(\d+)\/(\d+)\/(\d+)\s(\d+):(\d+):(\d+).+:\s([\w\s]+):\s(.*)'
+regex_string = '^(\d{1,2})[.,/](\d{1,2})[.,/](\d{1,2}).*?(\d{1,2}):(\d{1,2}):(\d{1,2}).*?[aApP][mM]:\s(.*?):(.*)$'
 messageList = []
 userDict = {}
 # text = "25/6/15 3:13:51 pm: Shyam Sundar: Heyy sorry for the late reply!"
