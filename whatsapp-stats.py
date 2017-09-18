@@ -95,8 +95,11 @@ def main():
 				# print match.group(0)
 
 				# create message class instance
-				msg_obj = Message(date(int(match.group(3)) + 2000, int(match.group(2)), int(match.group(1))), 
-					time(int(match.group(4)), int(match.group(5)), int(match.group(6)), 0), match.group(8))
+				# check if android (date is stored as 20xx)
+				if int(match.group(3) > 2000):
+					msg_obj = Message(date(int(match.group(3)), int(match.group(2)), int(match.group(1))), time(int(match.group(4)), int(match.group(5)), 0, 0), match.group(8))
+				else:
+					msg_obj = Message(date(int(match.group(3)) + 2000, int(match.group(2)), int(match.group(1))), time(int(match.group(4)), int(match.group(5)), 0, 0), match.group(8))
 				messageList.append(msg_obj)
 				
 				# create user instance if necessary
@@ -123,8 +126,7 @@ def main():
 
 # variables required
 file_name = ''
-#regex_string = '(\d+)\/(\d+)\/(\d+)\s(\d+):(\d+):(\d+).+:\s([\w\s]+):\s(.*)'
-regex_string = '^(\d{1,2})[.,/](\d{1,2})[.,/](\d{1,2}).*?(\d{1,2}):(\d{1,2}):(\d{1,2}).*?[aApP][mM]:\s(.*?):(.*)$'
+regex_string = '^(\d{1,2})[.,/](\d{1,2})[.,/](\d{1,4}).*?(\d{1,2}):(\d{1,2})(?:\:(\d{1,2}))?.*?[aApP]\.?[mM][.:]\s(.*?):(.*)$'
 messageList = []
 userDict = {}
 # text = "25/6/15 3:13:51 pm: Shyam Sundar: Heyy sorry for the late reply!"
