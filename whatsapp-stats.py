@@ -96,7 +96,7 @@ def main():
 
 				# create message class instance
 				# check if android (date is stored as 20xx)
-				if int(match.group(3) > 2000):
+				if int(match.group(3)) > 2000:
 					msg_obj = Message(date(int(match.group(3)), int(match.group(2)), int(match.group(1))), time(int(match.group(4)), int(match.group(5)), 0, 0), match.group(8))
 				else:
 					msg_obj = Message(date(int(match.group(3)) + 2000, int(match.group(2)), int(match.group(1))), time(int(match.group(4)), int(match.group(5)), 0, 0), match.group(8))
@@ -126,10 +126,9 @@ def main():
 
 # variables required
 file_name = ''
-regex_string = '^(\d{1,2})[.,/](\d{1,2})[.,/](\d{1,4}).*?(\d{1,2}):(\d{1,2})(?:\:(\d{1,2}))?.*?[aApP]\.?[mM][.:]\s(.*?):(.*)$'
+regex_string = '^(\d{1,2})[.,/](\d{1,2})[.,/](\d{1,4}).*?(\d{1,2}):(\d{1,2})(?:\:(\d{1,2}))?.*?[:-]\s(.*?):(.*)$'
 messageList = []
 userDict = {}
-# text = "25/6/15 3:13:51 pm: Shyam Sundar: Heyy sorry for the late reply!"
 
 if len(sys.argv) != 2:
 	print ('Incorrect number of arguments provided.')
